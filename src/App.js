@@ -8,6 +8,7 @@ import SideNav from './components/layout/SideNav';
 import Home from './components/pages/Home';
 import CreateLabel from './components/pages/CreateLabel';
 import MyLables from './components/pages/MyLables';
+import Login from './components/pages/Login';
 
 import LabelsStore from './store/LabelsStore';
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path='/' component={Home}/>
             <Route exact path='/create' component={CreateLabel} />
              <Route exact path='/labels' component={MyLables} />
+             <Route exact path='/login' component={Login} />
           </div>
         </div>
       </div>
