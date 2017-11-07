@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import {Provider} from 'mobx-react';
 
-import Header from './components/layout/Header';
-import SideNav from './components/layout/SideNav';
+import Header from '../components/layout/Header';
+import SideNav from '../components/layout/SideNav';
 
-import Home from './components/pages/Home';
-import CreateLabel from './components/pages/CreateLabel';
-import MyLables from './components/pages/MyLables';
-import Login from './components/pages/Login';
+import Home from './Home/Home';
+import CreateLabel from './Labels/CreateLabel';
+import MyLables from './Labels/MyLables';
+import Login from './Access/Login';
 
-import LabelsStore from './store/LabelsStore';
+import LabelsStore from '../stores/LabelsStore';
 
 import './App.css';
 

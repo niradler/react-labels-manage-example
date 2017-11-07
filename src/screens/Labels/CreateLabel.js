@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Label from '../../store/models/Label'
+import Label from '../../stores/models/Label'
 import {  action } from "mobx";
 import { observer,inject } from "mobx-react";
 
@@ -44,8 +44,7 @@ class CreateLabel extends Component {
     this.setState(state);
   }
 
-  @action
-  handleFormSubmit = e => {
+  @action handleFormSubmit = e => {
     e.preventDefault();
     const newLabel = this.state.newLabel
     this.props.LabelsStore.add(newLabel);
