@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Label from '../../stores/models/Label'
-import {  action } from "mobx";
 import { observer,inject } from "mobx-react";
 
 @inject ('LabelsStore')
@@ -44,12 +43,13 @@ class CreateLabel extends Component {
     this.setState(state);
   }
 
-  @action handleFormSubmit = e => {
+   handleFormSubmit = e => {
     e.preventDefault();
-    const newLabel = this.state.newLabel
+    const state = this.state
+    const newLabel = state.newLabel
     this.props.LabelsStore.add(newLabel);
-     this.state.newLabel = new Label({lan: '', key: '', value: ''});
-      this.setState(this.state);
+     state.newLabel = new Label({lan: '', key: '', value: ''});
+      this.setState(state);
   };
 }
 

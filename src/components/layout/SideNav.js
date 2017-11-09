@@ -8,7 +8,7 @@ class SideNav extends Component {
   <div className="App-SideNav">
           <ul>
              <li>
-              <Link to={`/`}>Home</Link>
+              <Link to={`/home`}>Home</Link>
             </li>
             <li>
               <Link to={`/create`}>To create</Link>
