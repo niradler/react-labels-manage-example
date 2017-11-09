@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Validator from '../../components/Validator';
 
 class Login extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Login extends Component {
             <label>
               Email:
             </label>
-            <input type="email" name="email" onChange={this.onChange}/>
+            <input type="text" name="email" onChange={this.onChange}/>
           </div>
           <div >
             <label>
@@ -43,6 +44,8 @@ class Login extends Component {
   }
   handleLogin(e) {
     e.preventDefault();
+    const isV =  Validator.test(this.state.email,'email');
+    debugger;
     const loggedIn = (this.state.email === "shelfmint@yahoo.com" && this.state.password === "a12345")? true: false;
     localStorage.setItem('loggedIn', loggedIn);
     if (loggedIn) {
