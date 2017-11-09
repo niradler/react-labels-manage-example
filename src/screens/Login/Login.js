@@ -44,9 +44,15 @@ class Login extends Component {
   }
   handleLogin(e) {
     e.preventDefault();
-    const isV =  Validator.test(this.state.email,'email');
-    debugger;
-    const loggedIn = (this.state.email === "shelfmint@yahoo.com" && this.state.password === "a12345")? true: false;
+    const validatorRes = Validator.test(this.state);
+    console.log(validatorRes);
+    if (!validatorRes.isValid) {
+      alert('Fields Error!');
+      return;
+    }
+    const loggedIn = (this.state.email === "shelfmint@yahoo.com" && this.state.password === "a12345")
+      ? true
+      : false;
     localStorage.setItem('loggedIn', loggedIn);
     if (loggedIn) {
       this
