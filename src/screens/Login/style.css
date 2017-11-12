@@ -1,0 +1,10 @@
+.loginScreenHolder {
+  width: inherit;
+  margin: 0 auto;
+  max-width: 370px; }
+  .loginScreenHolder .loginScreenWrapper {
+    margin-top: 80px;
+    padding: 20px 30px 40px;
+    border: 1px solid #c2c2c2;
+    background-color: white;
+    border-radius: 3px; }

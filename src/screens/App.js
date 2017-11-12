@@ -15,21 +15,19 @@ import './App.css';
 
 class App extends Component {
 
-  render() {
-    return (
-      <Provider LabelsStore={LabelsStore}>
-        <BrowserRouter >
-          <div className="App">
-            <div>
-              <div className="Main">
-               <PublicRoutes />
-              </div>
-            </div>
-          </div>
-        </BrowserRouter>
-      </Provider>
-    );
-  }
+    render() {
+        return (
+            <Provider LabelsStore={LabelsStore}>
+                <BrowserRouter>
+                    <div>
+                        <PublicRoutes/>
+                    </div>
+                </BrowserRouter>
+            </Provider>
+        );
+    }
 }
 
 export default App;
+
+
