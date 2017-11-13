@@ -11,7 +11,7 @@ class LabelsStore {
     @action add(label) {
         label.id = Math.random().toString(36).substr(2, 10);
         this.labels.push(label);
-        console.log('label added', label);
+        // console.log('label added', label);
     }
     @action getAll() {
         console.log('return all labels', this.labels);
@@ -19,7 +19,7 @@ class LabelsStore {
     }
     formatLabels(labels) {
         let keys = [];
-        labels.map((l, index) => {
+        labels.map((l) => {
             let c = 0,
                 loc = null;
             keys.map((s, location) => {
@@ -28,7 +28,7 @@ class LabelsStore {
                     loc = location;
                 };
             });
-            if (c == 0) {
+            if (c === 0) {
                 let obj = {};
                 obj.key = l.key;
                 obj.id = l.id;

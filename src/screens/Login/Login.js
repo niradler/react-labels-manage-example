@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Validator from '../../components/Validator';
-import Styles from './style.css';
+import './style.css';
 
 class Login extends Component {
     constructor(props) {
@@ -59,7 +59,7 @@ class Login extends Component {
     handleLogin(e) {
         e.preventDefault();
         const validatorRes = Validator.test(this.state);
-        console.log(validatorRes);
+        // console.log(validatorRes);
         if (!validatorRes.isValid) {
             alert('Fields Error!');
             return;

@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'mobx-react';
 
 import PublicRoutes from '../routes/PublicRoutes';
-
-import AuthCheck from '../components/AuthCheck';
-
-import Layout from './Layout/Layout';
-import Login from './Login/Login';
 
 import LabelsStore from '../stores/LabelsStore';
 

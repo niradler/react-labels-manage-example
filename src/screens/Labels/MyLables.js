@@ -42,70 +42,46 @@ class MyLables extends Component {
                     <div className="col-sm-offset-2 col-sm-8">
                         <h1 className='text-center'>My Labels</h1>
 
-                        <table class="table table-striped">
+                        <table className="table">
                             <thead>
                             <tr>
-                                <th>id</th>
-                                <th>Language</th>
                                 <th>Key</th>
                                 <th>Value</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
+
+
                             {this
                                 .getSortedLabels
-                                .map((l) => (
-                                    console.log('!!!!!!!', l),
+                                .map((l, index) => (
+
+                                    <tbody key={index}>
                                     <tr>
-                                        <td>{l.id}</td>
-                                        <td>{l.lan}</td>
-                                        <td>{l.key}</td>
-                                        <td>{l.value}</td>
+                                        <td rowSpan='2'>{l.key}</td>
+
                                         <td>
-                                            <button type="button" className="btn btn-danger" onClick={this.delLabel.bind(this, l.id)}>Remove</button>
+                                            {l.languages.map((lang, i) => (
+                                                <table key={i}>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{lang.lan}</td>
+                                                        <td>{lang.value}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            ))}
+
+                                        </td>
+                                        <td rowSpan='2'>
+                                            <button type="button" className="btn btn-danger btn-block"
+                                                    onClick={this.delLabel.bind(this, l.id)}>Remove
+                                            </button>
                                         </td>
                                     </tr>
+                                    </tbody>
                                 ))}
 
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Key</th>
-                                <th>Value</th>
-                                <th></th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-
-
-                            <tbody>
-
-
-                                        <tr>
-                                            <td rowSpan='2'>test1</td>
-                                            <td>en</td>
-                                            <td>en value</td>
-                                            <td rowSpan='2'>
-                                                <button type="button" className="btn btn-danger btn-block">Remove</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>fr</td>
-                                            <td>fr value</td>
-                                        </tr>
-
-                            
-                            </tbody>
                         </table>
                     </div>
                 </div>
