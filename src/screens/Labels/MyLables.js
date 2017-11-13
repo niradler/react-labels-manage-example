@@ -37,7 +37,7 @@ class MyLables extends Component {
     render() {
 
         return (
-            <div className='container'>
+            <div>
                 <div className="row">
                     <div className="col-sm-offset-2 col-sm-8">
                         <h1 className='text-center'>My Labels</h1>
@@ -61,17 +61,17 @@ class MyLables extends Component {
                                         <td rowSpan='2'>{l.key}</td>
 
                                         <td>
-                                            {l.languages.map((lang, i) => (
-                                                <table key={i}>
-                                                    <tbody>
-                                                    <tr>
+                                            <table className='table table-condensed'>
+                                                <tbody>
+                                                {l.languages.map((lang, i) => (
+
+                                                    <tr key={i}>
                                                         <td>{lang.lan}</td>
                                                         <td>{lang.value}</td>
                                                     </tr>
-                                                    </tbody>
-                                                </table>
-                                            ))}
-
+                                                ))}
+                                                </tbody>
+                                            </table>
                                         </td>
                                         <td rowSpan='2'>
                                             <button type="button" className="btn btn-danger btn-block"

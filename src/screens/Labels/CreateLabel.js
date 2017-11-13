@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Label from '../../stores/models/Label'
 import {observer, inject} from "mobx-react";
+import MyLables from "../../screens/Labels/MyLables";
 
 @inject('LabelsStore')
 @observer
@@ -20,42 +21,60 @@ class CreateLabel extends Component {
 
                         <h1 className='text-center'>CreateLabel</h1>
 
-                        <form className="form-horizontal" onSubmit={this.handleFormSubmit}>
-                            <div className="form-group">
-                                <label>Language:</label>
-                                <input className="form-control" type="text" name="lan" onChange={this.onChange} value={this.state.newLabel.lan}/>
-                            </div>
+                        <form onSubmit={this.handleFormSubmit}>
                             <div className="form-group">
                                 <label>Key:</label>
-                                <input className="form-control" type="text" name="key" onChange={this.onChange} value={this.state.newLabel.key}/>
+                                <input className="form-control" type="text" name="key" onChange={this.onChange} value={this.state.newLabel.key} placeholder='Key word'/>
                             </div>
+
+                            <hr className='divider'></hr>
+
+
+
+                            <div className="form-group">
+                                <select className="form-control" title="Choose Language" name="lan" onChange={this.onChange}>
+                                    <option>Choose language</option>
+                                    <option value="EN">English</option>
+                                    <option value="ES">Español</option>
+                                </select>
+                            </div>
+
                             <div className="form-group">
                                 <label>Value:</label>
-                                <input className="form-control" type="text" name="value" onChange={this.onChange} value={this.state.newLabel.value}/>
+                                <textarea rows='5' className="form-control" type="text" name="value" onChange={this.onChange} value={this.state.newLabel.value} placeholder='Write an value'/>
                             </div>
+
                             <div className="form-group">
-                                <button type="submit" className="btn btn-success btn-block">Add</button>
+                                <button className='btn btn-primary btn-block'>Add One More Lable</button>
+                            </div>
+
+                            <hr className='divider'></hr>
+
+                            <div className="form-group">
+                                <button type="submit" className="btn btn-success btn-block btn-lg">Save</button>
                             </div>
                         </form>
 
                     </div>
                 </div>
+                <MyLables/>
             </div>
         );
+
     }
 
     onChange = (e) => {
-        const state = this.state
+        const state = this.state;
         state.newLabel[e.target.name] = e.target.value;
         this.setState(state);
-    }
+    };
 
     handleFormSubmit = e => {
         e.preventDefault();
-        const state = this.state
-        const newLabel = state.newLabel
+        const state = this.state;
+        const newLabel = state.newLabel;
         this.props.LabelsStore.add(newLabel);
-        state.newLabel = new Label({lan: '', key: '', value: ''});
+        state.newLabel = new Label({lan: '', key: this.state.newLabel.key, value: ''});
         this.setState(state);
     };
 }
