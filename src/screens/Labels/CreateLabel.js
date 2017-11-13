@@ -9,7 +9,9 @@ class CreateLabel extends Component {
     constructor(props) {
         super();
         this.state = {
-            newLabel: new Label({lan: '', key: '', value: ''})
+            newLabel: {lan: '', key: '', value: ''},
+
+            newLables: []
         };
     }
 
@@ -21,7 +23,7 @@ class CreateLabel extends Component {
 
                         <h1 className='text-center'>CreateLabel</h1>
 
-                        <form onSubmit={this.handleFormSubmit}>
+                        <form>
                             <div className="form-group">
                                 <label>Key:</label>
                                 <input className="form-control" type="text" name="key" onChange={this.onChange} value={this.state.newLabel.key} placeholder='Key word'/>
@@ -29,7 +31,20 @@ class CreateLabel extends Component {
 
                             <hr className='divider'></hr>
 
+                            <table className='table table-striped'>
+                                <tbody>
+                                {
+                                    this.state.newLables.map((label, i) => (
+                                        <tr key={i}>
+                                            <td>{label.lang}</td>
+                                            <td>{label.value}</td>
+                                        </tr>
+                                    ))
+                                }
+                                </tbody>
+                            </table>
 
+                            <hr className='divider'></hr>
 
                             <div className="form-group">
                                 <select className="form-control" title="Choose Language" name="lan" onChange={this.onChange}>
@@ -45,13 +60,13 @@ class CreateLabel extends Component {
                             </div>
 
                             <div className="form-group">
-                                <button className='btn btn-primary btn-block'>Add One More Lable</button>
+                                <button onClick={this.handleAddLable} className='btn btn-primary btn-block'>Add One More Lable</button>
                             </div>
 
                             <hr className='divider'></hr>
 
                             <div className="form-group">
-                                <button type="submit" className="btn btn-success btn-block btn-lg">Save</button>
+                                <button onClick={this.handleFormSubmit} type="submit" className="btn btn-success btn-block btn-lg">Save</button>
                             </div>
                         </form>
 
@@ -60,7 +75,6 @@ class CreateLabel extends Component {
                 <MyLables/>
             </div>
         );
-
     }
 
     onChange = (e) => {
@@ -69,14 +83,33 @@ class CreateLabel extends Component {
         this.setState(state);
     };
 
+    handleAddLable = e => {
+        e.preventDefault();
+        
+        console.log(this.state);
+
+        const state = this.state;
+
+        state.newLables.push({
+            lang: this.state.newLabel.lan,
+            value: this.state.newLabel.value
+        })
+
+        this.setState(state);
+    }
+
     handleFormSubmit = e => {
         e.preventDefault();
         const state = this.state;
         const newLabel = state.newLabel;
         this.props.LabelsStore.add(newLabel);
-        state.newLabel = new Label({lan: '', key: this.state.newLabel.key, value: ''});
+        state.newLabel = new Label({lan: '', key: '', value: ''});
         this.setState(state);
     };
 }
 
 export default CreateLabel;
+
+
+
+
