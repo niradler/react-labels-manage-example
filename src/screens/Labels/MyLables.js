@@ -28,10 +28,6 @@ class MyLables extends Component {
         this.getSortedLabels = this.props
             .LabelsStore
             .getSortedLabels();
-        // console.log('getSortedLabels', getSortedLabels);
-        // console.log('search', this.props
-        //     .LabelsStore
-        //     .search('test1'));
     }
 
     render() {
@@ -53,12 +49,14 @@ class MyLables extends Component {
 
 
                             {this
-                                .getSortedLabels
+                                .props
+                                .LabelsStore
+                                .sortedLabels
                                 .map((l, index) => (
 
                                     <tbody key={index}>
                                     <tr>
-                                        <td rowSpan='2'>{l.key}</td>
+                                        <td>{l.key}</td>
 
                                         <td>
                                             <table className='table table-condensed'>
@@ -66,14 +64,14 @@ class MyLables extends Component {
                                                 {l.languages.map((lang, i) => (
 
                                                     <tr key={i}>
-                                                        <td>{lang.lan}</td>
+                                                        <td>{lang.lang}</td>
                                                         <td>{lang.value}</td>
                                                     </tr>
                                                 ))}
                                                 </tbody>
                                             </table>
                                         </td>
-                                        <td rowSpan='2'>
+                                        <td>
                                             <button type="button" className="btn btn-danger btn-block"
                                                     onClick={this.delLabel.bind(this, l.id)}>Remove
                                             </button>

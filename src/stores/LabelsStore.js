@@ -7,16 +7,22 @@ import {
 
 class LabelsStore {
     @observable labels = [];
+    @observable sortedLabels = [];
 
-    @action add(label) {
+
+    @action
+    add(label) {
         label.id = Math.random().toString(36).substr(2, 10);
         this.labels.push(label);
         // console.log('label added', label);
     }
-    @action getAll() {
+
+    @action
+    getAll() {
         console.log('return all labels', this.labels);
         return this.labels;
     }
+
     formatLabels(labels) {
         let keys = [];
         labels.map((l) => {
@@ -26,7 +32,8 @@ class LabelsStore {
                 if (l.key === s.key) {
                     c++;
                     loc = location;
-                };
+                }
+                ;
             });
             if (c === 0) {
                 let obj = {};
@@ -34,7 +41,7 @@ class LabelsStore {
                 obj.id = l.id;
                 obj.languages = [];
                 obj.languages.push({
-                    lan: l.lan,
+                    lang: l.lang,
                     value: l.value,
                     id: l.id
 
@@ -42,31 +49,38 @@ class LabelsStore {
                 keys.push(obj);
             } else {
                 keys[loc].languages.push({
-                    lan: l.lan,
+                    lang: l.lang,
                     value: l.value,
                     id: l.id
                 });
             }
         })
+        this.sortedLabels = keys;
         return keys;
     }
-    @action getSortedLabels() {
+
+    @action
+    getSortedLabels() {
         const labels = this.labels.slice();
         return this.formatLabels(labels);
     }
-    @action del(id) {
+
+    @action
+    del(id) {
         console.log('delete label with id of ', id);
         this.labels = this.labels.filter((l) => {
             return l.id !== id
         });
     }
 
-    @computed get count() {
+    @computed
+    get count() {
         return this.labels.length;
     }
 
-    @action search(term) {
-         const labels = this.labels.slice();
+    @action
+    search(term) {
+        const labels = this.labels.slice();
         const formatedLabels = this.formatLabels(labels)
         return formatedLabels.filter((l) => {
             return l.key.includes(term);
@@ -75,5 +89,6 @@ class LabelsStore {
     }
 
 }
+
 const store = new LabelsStore();
 export default store;
